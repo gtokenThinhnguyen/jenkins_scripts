@@ -19,7 +19,7 @@ echo "Backing up xml files"
 cp "$JENKIN_HOME"/*.xml "$ARC_DIR"
 
 echo "Backing up plugins"
-cp "$JENKIN_HOME/plugins/"*.[hj]pi "%ARC_DIR/plugins"
+cp "$JENKIN_HOME/plugins/"*.[hj]pi "$ARC_DIR/plugins"
 hpi_pinned_count=$(find $JENKIN_HOME/plugins -name *.hpi.pinned | wc -l)
 jpi_pinned_count=$(find $JENKIN_HOME/plugins -name *.jpi.pinned | wc -l)
 if [ $hpi_pinned_count  -ne 0 -o $jpi_pinned_count -ne 0 ]; then 
@@ -45,8 +45,9 @@ fi
 echo "Backing up jenkin jobs"
 function backupJobs {
 	cd "$1"
-	tar -cf /var/tmp/jobs.tar . --exclude='./*/workspace/*'
-	tar -xf /var/tmp/jobs.tar -C "$2"
+	tar -cf  $TMP_DIR/jobs.tar . --exclude='./*/workspace/*'
+	tar -xf  $TMP_DIR/jobs.tar -C "$2"
+	rm -f $TMP_DIR/jobs.tar
 }
 
 if [ "$(ls -A $JENKIN_HOME/jobs)" ]; then 
@@ -59,5 +60,3 @@ tar -czvf "$TMP_TAR_NAME" "$ARC_NAME"
 cd -
 mv -f "$TMP_TAR_NAME" "$DEST_FILE"
 rm -rf "$ARC_DIR"
-
-exit 0
