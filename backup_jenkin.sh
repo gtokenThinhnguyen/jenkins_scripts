@@ -2,11 +2,12 @@
 
 readonly JENKIN_HOME=$1
 readonly DEST_FILE=$2
-readonly TMP_DIR="/var/tmp"
+readonly TMP_DIR="/var/tmp/jenkins"
 readonly ARC_NAME="jenkins-backup"
 readonly ARC_DIR="$TMP_DIR/$ARC_NAME"
 readonly TMP_TAR_NAME="$TMP_DIR/jenkins_tmp.tar.gz"
 
+mkdir -p "$TMP_DIR"
 rm -rf "$ARC_DIR" "$TMP_TAR_NAME"
 
 echo "Creating jenkins folders"
