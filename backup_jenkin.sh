@@ -45,14 +45,15 @@ fi
 echo "Backing up jenkin jobs"
 function backupJobs {
 	readonly TMP_TAR="$TMP_DIR/jobs.tar.gz"
-	cd "$1"
-	tar -cf jobs.tar.gz . --exclude='./*/workspace/*'
-	tar -xf jobs.tar.gz -C "$2"
-	rm -f jobs.tar.gz
+	
 }
 
 if [ "$(ls -A $JENKIN_HOME/jobs)" ]; then 
-	 backupJobs $JENKIN_HOME/jobs $ARC_DIR/jobs
+	cd "$JENKIN_HOME/jobs"
+	readonly TEMP_TAR=$TMP_DIR/jobs.tar
+	tar -cf $TEMP_TAR . --exclude='./*/workspace/*'
+	tar -xf $TEMP_TAR -C "$ARC_DIR/jobs"
+	rm -f $TEMP_TAR
 fi
 
 echo "Compressing files"
