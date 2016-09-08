@@ -6,6 +6,7 @@ readonly TMP_DIR="/var/lib/jenkins/workspace/Jenkins_Backup"
 readonly ARC_NAME="jenkins-backup"
 readonly ARC_DIR="$TMP_DIR/$ARC_NAME"
 readonly TMP_TAR_NAME="$TMP_DIR/jenkins_tmp.tar.gz"
+readonly S3_BUCKET="s3://gtoken-jenkin-backups"
 
 mkdir -p "$TMP_DIR" 
 mkdir -p "$TMP_DIR/data"
@@ -57,5 +58,7 @@ echo "Compressing files"
 cd "$TMP_DIR"
 tar -czvf "$TMP_TAR_NAME" "$ARC_NAME"
 cd -
+
 mv -f "$TMP_TAR_NAME" "$DEST_FILE"
-# rm -rf "$ARC_DIR"
+aws s3 mv "$DEST_FILE" "$S3_BUCKET"
+rm -rf "$ARC_DIR" 
