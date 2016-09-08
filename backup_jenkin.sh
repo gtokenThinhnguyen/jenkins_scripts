@@ -2,7 +2,7 @@
 
 readonly JENKIN_HOME=$1
 readonly DEST_FILE=$2
-readonly TMP_DIR="~/data/bakup/jenkins"
+readonly TMP_DIR="/var/lib/jenkins/workspace/Jenkins_Backup"
 readonly ARC_NAME="jenkins-backup"
 readonly ARC_DIR="$TMP_DIR/$ARC_NAME"
 readonly TMP_TAR_NAME="$TMP_DIR/jenkins_tmp.tar.gz"
