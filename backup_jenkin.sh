@@ -45,9 +45,9 @@ fi
 echo "Backing up jenkin jobs"
 function backupJobs {
 	cd "$1"
-	tar -cf  $TMP_DIR/jobs.tar . --exclude='./*/workspace/*'
-	tar -xf  $TMP_DIR/jobs.tar -C "$2"
-	rm -f $TMP_DIR/jobs.tar
+	tar -cf  "$TMP_DIR/jobs.tar" . --exclude='./*/workspace/*'
+	tar -xf  "$TMP_DIR/jobs.tar" -C "$2"
+	rm -f "$TMP_DIR/jobs.tar"
 }
 
 if [ "$(ls -A $JENKIN_HOME/jobs)" ]; then 
