@@ -44,10 +44,11 @@ fi
 
 echo "Backing up jenkin jobs"
 function backupJobs {
+	readonly TMP_TAR = "$TMP_DIR/jobs.tar.gz"
 	cd "$1"
-	tar -cf  "~/jobs.tar" . --exclude='./*/workspace/*'
-	tar -xf  "~/jobs.tar" -C "$2"
-	rm -f "~/jobs.tar"
+	tar -cf  "$TMP_TAR" . --exclude='./*/workspace/*'
+	tar -xf  "$TMP_TAR" -C "$2"
+	rm -f "$TMP_TAR"
 }
 
 if [ "$(ls -A $JENKIN_HOME/jobs)" ]; then 
