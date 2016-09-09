@@ -45,7 +45,6 @@ fi
 
 
 echo "Backing up jenkin jobs"
-
 if [ "$(ls -A $JENKIN_HOME/jobs)" ]; then 
 	cd "$JENKIN_HOME/jobs"
 	readonly TEMP_TAR="$ARC_DIR/jobs.tar.bz2"
