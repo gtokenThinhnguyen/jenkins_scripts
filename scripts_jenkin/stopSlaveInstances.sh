@@ -1,6 +1,6 @@
 #!/bin/bash
 readonly startTime="000000"
-readonly endTime="130000"
+readonly endTime="070000"
 currentTime=`date +"%H%M%S"`
 if [[ "$currentTime" < "$startTime" || "$currentTime" > "$endTime" ]];
 then
