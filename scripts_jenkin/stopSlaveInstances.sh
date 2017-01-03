@@ -2,7 +2,7 @@
 readonly startTime="000000"
 readonly endTime="130000"
 currentTime=`date +"%H%M%S"`
-if [[ "$currentTime" < "$startTime" && "$currentTime" > "$endTime" ]];
+if [[ "$currentTime" < "$startTime" || "$currentTime" > "$endTime" ]];
 then
     readonly region='ap-southeast-1'
     output="$(aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' 'Name=tag:Type,Values=jenkin-slave' --region $region --query '[Reservations[*].Instances[*].InstanceId]' --output text)"
